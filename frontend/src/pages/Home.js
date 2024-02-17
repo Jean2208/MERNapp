@@ -1,12 +1,11 @@
-import { useContext, useEffect} from 'react';
+import { useContext, useEffect } from 'react';
 import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
 import { WorkoutContext } from '../context/WorkoutContext';
 
-
 const Home = () => {
 
-    const {workouts, dispatch} = useContext(WorkoutContext)
+    const { workouts, dispatch } = useContext(WorkoutContext)
 
     // useEffect to load fetch once
     useEffect(() => {
@@ -16,7 +15,7 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
-                dispatch({type: 'SET_WORKOUTS', payload: json})
+                dispatch({ type: 'SET_WORKOUTS', payload: json })
             }
         }
         fetchWorkouts()

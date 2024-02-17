@@ -5,6 +5,7 @@ import { WorkoutContext } from '../context/WorkoutContext';
 
 const Home = () => {
 
+    // Use local state from our context
     const { workouts, dispatch } = useContext(WorkoutContext)
 
     // useEffect to load fetch once

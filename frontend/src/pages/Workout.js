@@ -11,6 +11,7 @@ const Workout = () => {
     
     useEffect(() => {
 
+        // Fetch a single workout from the db
         const fetchWorkout = async () => {
             setIsPending(true)
             try {

@@ -6,6 +6,7 @@ const WorkoutDetails = ({ workout }) => {
 
     const { dispatch } = useContext(WorkoutContext)
 
+    // Function is invoked when trying to delete a workout using the delete button
     const handleDelete = async () => {
 
         const response = await fetch('/workouts/' + workout._id, {

@@ -8,21 +8,20 @@ const Workout = () => {
     const [workout, setWorkout] = useState(null)
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
-    
-    useEffect(() => {
 
-        // Fetch a single workout from the db
-        const fetchWorkout = async () => {
-            setIsPending(true)
-            try {
-                const response = await axios.get('/workouts/' + id)
-                setWorkout(response.data)
-                setIsPending(false)
-            } catch (error) {
-                setError("No such workout")
-                setIsPending(false)
-            }
+    const fetchWorkout = async () => {
+        setIsPending(true)
+        try {
+            const response = await axios.get('/workouts/' + id)
+            setWorkout(response.data)
+            setIsPending(false)
+        } catch (error) {
+            setError("No such workout")
+            setIsPending(false)
         }
+    }
+
+    useEffect(() => {
         fetchWorkout()
     }, [id])
 

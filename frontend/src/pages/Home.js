@@ -8,17 +8,17 @@ const Home = () => {
     // Use local state from our context
     const { workouts, dispatch } = useContext(WorkoutContext)
 
+    const fetchWorkouts = async () => {
+        const response = await fetch('/workouts')
+        const json = await response.json()
+
+        if (response.ok) {
+            dispatch({ type: 'SET_WORKOUTS', payload: json })
+        }
+    }
+
     // useEffect to load fetch once
     useEffect(() => {
-
-        const fetchWorkouts = async () => {
-            const response = await fetch('/workouts')
-            const json = await response.json()
-
-            if (response.ok) {
-                dispatch({ type: 'SET_WORKOUTS', payload: json })
-            }
-        }
         fetchWorkouts()
     }, [dispatch])
 

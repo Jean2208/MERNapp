@@ -27,7 +27,7 @@ const WorkoutDetails = ({ workout }) => {
             </Link>
             <p><strong>Reps: </strong>{workout.reps}</p>
             <p><strong>Load (kg): </strong>{workout.load}</p>
-            <p>{workout.createdAt}</p>
+            <p>{new Date(workout.createdAt).toLocaleDateString('en-CA')}</p>
             <span onClick={handleDelete}>delete</span>
         </div>
 

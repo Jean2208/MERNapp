@@ -33,6 +33,20 @@ const getWorkout = async (req, res) => {
 const postWorkout = async (req, res) => {
     // Destructuring to extract 'title', 'reps', and 'load' directly from the request body
     const {title, reps, load} = req.body
+    const emptyFields = []
+
+    if (!title) {
+        emptyFields.push('title')
+    }
+    if (!reps) {
+        emptyFields.push('reps')
+    }
+    if (!load) {
+        emptyFields.push('load')
+    }
+    if (emptyFields.length > 0) {
+        return res.status(400).json({error: 'Please fill out all the fields', emptyFields})
+    } 
 
     try {
         // Use await to pause the execution of the function an wait for the promise returned by the create() method

@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { WorkoutContext } from '../context/WorkoutContext';
 
 const WorkoutForm = () => {
 
+    const {dispatch} = useContext(WorkoutContext)
     const [title, setTitle] = useState('')
     const [reps, setReps] = useState('')
     const [load, setLoad] = useState('')
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
 
@@ -25,6 +28,7 @@ const WorkoutForm = () => {
         if (!response.ok) {
             setIsPending(false)
             setError(json.error)
+            setEmptyFields(json.emptyFields)
             return
         }
 
@@ -32,6 +36,9 @@ const WorkoutForm = () => {
         setTitle('')
         setReps('')
         setLoad('')
+        setError(null)
+        setEmptyFields([])
+        dispatch({type: 'CREATE_WORKOUT', payload: json})
 
     }
     //handleSubmit function will trigger a post request to the db
@@ -41,11 +48,26 @@ const WorkoutForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <label>Title</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input 
+            type="text" 
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)}
+            className={emptyFields.includes('title') ? 'error' : ''}
+            />
             <label>Reps</label>
-            <input type="number" value={reps} onChange={(e) => setReps(e.target.value)} />
+            <input 
+            type="number" 
+            value={reps} 
+            onChange={(e) => setReps(e.target.value)}
+            className={emptyFields.includes('reps') ? 'error' : ''}
+            />
             <label>Load</label>
-            <input type="number" value={load} onChange={(e) => setLoad(e.target.value)} />
+            <input 
+            type="number" 
+            value={load} 
+            onChange={(e) => setLoad(e.target.value)}
+            className={emptyFields.includes('load') ? 'error' : ''}
+            />
             {!isPending && <button>Add Workout</button>}
             {isPending && <button disable>Adding workout...</button>}
             {error && <div className="error">{error}</div>}

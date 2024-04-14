@@ -9,7 +9,8 @@ const Home = () => {
     const { workouts, dispatch } = useContext(WorkoutContext)
 
     const fetchWorkouts = async () => {
-        const response = await fetch('/workouts')
+        console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts`)
         const json = await response.json()
 
         if (response.ok) {

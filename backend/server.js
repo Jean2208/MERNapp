@@ -10,11 +10,17 @@ const mongoose = require('mongoose')
 // Assing all the workouts routes to a constant to use them in middleware later
 const workoutRoutes = require('./routes/workouts')
 
+// Get cross origin use
+const cors = require('cors');
+
 // Intialize the express.js app
 const app = express()
 
 // Provide ability to parse json data to the app
 app.use(express.json());
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Use the workouts routes in our app and assign them to the /workouts url
 app.use('/workouts', workoutRoutes)

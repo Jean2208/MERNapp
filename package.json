@@ -1,6 +1,0 @@
-{
-"scripts": {
-    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build && cd .. && npm start --prefix backend",
-    "start": "cd backend && npm start && cd ../frontend && npm start"
-  }
-}

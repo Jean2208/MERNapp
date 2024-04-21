@@ -17,7 +17,7 @@ const WorkoutForm = () => {
         setIsPending(true)
         const workout = {title, reps, load}
 
-        const response = await fetch('/workouts', {
+        const response = await fetch('https://mernapp-s1q9.onrender.com/workouts', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(workout)

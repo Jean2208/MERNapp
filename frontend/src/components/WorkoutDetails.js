@@ -9,7 +9,7 @@ const WorkoutDetails = ({ workout }) => {
     // Function is invoked when trying to delete a workout using the delete button
     const handleDelete = async () => {
 
-        const response = await fetch('/workouts/' + workout._id, {
+        const response = await fetch('https://mernapp-s1q9.onrender.com/workouts/' + workout._id, {
             method: 'DELETE'
         })
 

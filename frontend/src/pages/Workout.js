@@ -12,7 +12,7 @@ const Workout = () => {
     const fetchWorkout = async () => {
         setIsPending(true)
         try {
-            const response = await axios.get('/workouts/' + id)
+            const response = await axios.get('https://mernapp-s1q9.onrender.com/workouts/' + id)
             setWorkout(response.data)
             setIsPending(false)
         } catch (error) {

@@ -9,8 +9,7 @@ const Home = () => {
     const { workouts, dispatch } = useContext(WorkoutContext)
 
     const fetchWorkouts = async () => {
-        console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts`)
+        const response = await fetch(`https://mernapp-s1q9.onrender.com/workouts`)
         const json = await response.json()
 
         if (response.ok) {
